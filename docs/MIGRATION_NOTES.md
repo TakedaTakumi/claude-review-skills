@@ -46,6 +46,12 @@
 | code-provenance | branch | ◯ / — / ◯(補助) | branch, slice | slice に補助観点として存在（§8.1 に slice 欠落） |
 | ddd-tactical | 全コマンド | ◯ / — / ◯ | branch, slice | repo は `ddd-strategic` を使う（repo に ddd-tactical セクションなし） |
 | i18n-a11y | branch, repo | ◯ / — / 評価しない | branch | review-repo に i18n-a11y セクション・マトリクス行が存在しない |
+| runtime-config | review-repo | (infra由来) / ◯ / — | branch, repo | 旧 `infrastructure` の branch 内容（Docker/compose/env/secret/本番起動）を継承 |
+| devenv-quality | review-repo | (infra由来) / ◯ / — | branch, repo | 旧 `infrastructure` の branch 内容（devcontainer）を継承 |
+| ci-quality | review-repo | (infra由来) / ◯ / — | branch, repo | 旧 `infrastructure` の branch 内容（CI/CD）を継承 |
+| iac-quality | review-repo | — / ◯ / — | repo | 旧 `infrastructure` の branch 記述に IaC 固有部分がないため repo 専用 |
+
+> runtime-config / devenv-quality / ci-quality は §8.1 では「review-repo」のみだが、合意1（`infrastructure` 分割）により旧 review-branch の該当内容を「review-branch での読み方」に引き継ぐため、`review-branch` にも適用される。
 
 上記以外の観点は §8.1 表と legacy 実体が一致している（例: security / supply-chain-attack / maintainability / readability / architecture / performance / data-integrity / dependencies / test-coverage / test-quality は §8.1 通り）。
 
