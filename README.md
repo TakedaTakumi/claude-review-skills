@@ -34,6 +34,9 @@ install.sh                         # ~/.claude/ への配置スクリプト
 CLAUDE_DIR=/path ./install.sh  # 配置先を上書き
 ```
 
+> 実行には bash が必要です。`sh install.sh` ではなく、`./install.sh`（要実行権限）
+> または `bash install.sh` で実行してください（`/bin/sh` が dash の環境では `sh install.sh` は失敗します）。
+
 ## ドキュメント
 
 - [MIGRATION_PLAN.md](MIGRATION_PLAN.md) — 移行計画の全体像（観点・分類・テンプレートの定義を含む）
