@@ -55,4 +55,10 @@
 
 上記以外の観点は §8.1 表と legacy 実体が一致している（例: security / supply-chain-attack / maintainability / readability / architecture / performance / data-integrity / dependencies / test-coverage / test-quality は §8.1 通り）。
 
-> このセクションは Phase 3 の各グループ作成に合わせて検証・追補する。
+---
+
+## C. Sub Agent のグループ分け（§3.4 と §8.1 主担当列の整合）
+
+§3.4 の `quality-reviewer` は「maintainability, readability, duplication, dead-code」の4観点と簡略表記されているが、§8.1 の「主担当 Agent」列では `error-handling` と `compatibility` も quality-reviewer に割り当てられている。全32観点を漏れなく1エージェントに割り当てるため、**§8.1 主担当列を正**とし、quality-reviewer は6観点（+ error-handling, compatibility）を担当する。
+
+11エージェントで全32観点を重複なくカバー（自動照合で確認済み）。`slice-flow-reviewer` は slice-cohesion に加え、入口→出口の情報フロー追跡を担い、security/supply-chain のスライス評価の土台を提供する。
