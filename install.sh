@@ -18,6 +18,11 @@
 set -euo pipefail
 
 CLAUDE_DIR="${CLAUDE_DIR:-$HOME/.claude}"
+if [ -z "$CLAUDE_DIR" ] || [ "$CLAUDE_DIR" = "/" ]; then
+  echo "error: CLAUDE_DIR must be a non-empty, non-root path (got: '${CLAUDE_DIR}')" >&2
+  exit 1
+fi
+CLAUDE_DIR="${CLAUDE_DIR%/}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MODE="symlink"
 FORCE=0

@@ -34,6 +34,11 @@ install.sh                         # ~/.claude/ への配置スクリプト
 
 ## インストール
 
+### 要件
+
+- **Claude Code**: Skill / Sub Agent / Slash Command 機構をサポートするバージョン（動作確認: **2.1.150**）。`claude --version` で確認できます。
+- **bash**: 4 以上（`set -euo pipefail`・`BASH_SOURCE` を使用するため dash / posh では実行不可）。
+
 ```bash
 ./install.sh                  # ~/.claude/ に symlink で配置（リポジトリ更新が即反映）
 ./install.sh --copy           # コピーで配置
@@ -56,7 +61,7 @@ CLAUDE_DIR=/path ./install.sh # 配置先を上書き
 
 ## ドキュメント
 
-- [MIGRATION_PLAN.md](MIGRATION_PLAN.md) — 移行計画（観点・分類・テンプレートの定義を含む完全な計画書）
+- [MIGRATION_PLAN.md](MIGRATION_PLAN.md) — 移行計画書（移行作業開始時点の 21観点ベース／現在は 32観点で運用、経緯記録として保持）
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Skill + Sub Agent + Slash Command の設計
 - [docs/USAGE.md](docs/USAGE.md) — 3コマンドの使い方・引数・例
 - [docs/PERSPECTIVES.md](docs/PERSPECTIVES.md) — 32観点のカタログ
