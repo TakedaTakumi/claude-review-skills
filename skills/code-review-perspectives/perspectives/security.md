@@ -61,12 +61,6 @@ related_perspectives: [supply-chain-attack, data-integrity, observability]
 - 出口（DB、外部 API、ファイル）への到達経路でのインジェクション可能性
 - 認証・認可がレイヤーのどこで実施されているか、漏れがないか
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 認証バイパス、リモートコード実行、機密データの平文露出、未パッチの SQL/コマンドインジェクション
-- **High**: CSRF トークン欠如、ハッシュ化されていないパスワード保存、過剰な権限付与、ログへの個人情報出力
-
 ## 関連観点
 
 - [supply-chain-attack](supply-chain-attack.md): 意図的な悪意の混入は別観点で扱う

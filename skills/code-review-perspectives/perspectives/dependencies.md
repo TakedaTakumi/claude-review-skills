@@ -48,12 +48,6 @@ related_perspectives: [supply-chain-attack, dead-code, compatibility]
 - 各ライブラリの妥当性（メンテ状況、CVE）
 - スライスが必要以上に多くの外部ライブラリに依存していないか
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 既知の CVE が High/Critical の依存追加、ライセンス非互換（GPL の混入）
-- **High**: 単一メンテナで過去1年更新なし、postinstall スクリプトを持つ新規パッケージ
-
 ## 関連観点
 
 - [supply-chain-attack](supply-chain-attack.md): 依存経由の悪意ある混入

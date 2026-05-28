@@ -52,12 +52,6 @@ related_perspectives: [hotspot, data-integrity, monorepo]
 - 起点からのコールチェーンの深さと、各段での I/O 発生
 - 同期/非同期の一貫性
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: O(n²) や N+1 が本番データ規模で確実に SLA 超過、無限ループ可能性
-- **High**: 大規模ループ内 I/O、インデックスを使わない頻出クエリ、メモリ全件ロード
-
 ## 関連観点
 
 - [hotspot](hotspot.md): Git 変更頻度から見たリスク領域（別軸）

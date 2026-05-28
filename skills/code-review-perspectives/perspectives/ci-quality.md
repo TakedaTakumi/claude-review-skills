@@ -52,12 +52,6 @@ related_perspectives: [security, supply-chain-attack, iac-quality, runtime-confi
 
 **ci（主要）**: 上記チェック項目を、Phase 0 で検出した CI ツールに応じて適用する。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: CI で `GITHUB_TOKEN` の write 権限を過剰付与
-- **High**: third-party action の tag 参照（SHA pin なし）
-
 ## 関連観点
 
 - [security](security.md): CI のセキュリティ（pull_request_target、secret 露出）

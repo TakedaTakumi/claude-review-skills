@@ -44,12 +44,6 @@ related_perspectives: [test-coverage, test-strategy]
 - スライスのテストでアサーションが本質を検証しているか
 - 過剰モックでスライスの統合性が検証されていない箇所
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: テストが何も検証していない（アサーション無し、または常に成立）
-- **High**: 過剰モックで実質的に何も検証していない
-
 ## 関連観点
 
 - [test-coverage](test-coverage.md): 網羅性

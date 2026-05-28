@@ -21,6 +21,7 @@
 - `skills/code-review-perspectives/SKILL.md`: L13 を「真実の源（移行元）」から「移行元（凍結済み）」へ書き換え、現リポジトリが一次資料であることを明示
 - `docs/PERSPECTIVES.md`: 観点カタログの一次資料を SKILL.md に統一し、本ファイルは「適用コマンド絵文字 + Agent グルーピング」の二次ビューとして位置付けを冒頭に明示
 - `docs/CATEGORIES.md`: 分類カタログの一次資料を SKILL.md に統一し、本ファイルは「典型パス・本質」の二次ビューとして位置付けを冒頭に明示。重複していた「✅ 主要と ⚠️ 補助の運用差」表は SKILL.md への参照に置換
+- 17 観点ファイルの「## 重大度の判断例」節を削除し、判断例の一次資料を `templates/severity-criteria.md` に統一。severity-criteria.md の表に `architecture-drift` と `iac-quality` の行を追加して網羅。観点ファイルは全て「役割 → チェック項目 → 文脈別の読み替え → 関連観点」の 4 節構成に統一
 
 ### Fixed
 

@@ -43,12 +43,6 @@ related_perspectives: [security, devenv-quality, ci-quality, iac-quality]
 
 **runtime（主要）**: 上記チェック項目をリポジトリのランタイム構成（Dockerfile*, compose.yml 等）に適用する。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: `:latest` ベースイメージで再現不能、シークレットの平文コミット（Dockerfile への `ENV` 直書き等）
-- **High**: 環境変数の `.env.example` への反映漏れ
-
 ## 関連観点
 
 - [security](security.md): コンテナのセキュリティ・シークレット

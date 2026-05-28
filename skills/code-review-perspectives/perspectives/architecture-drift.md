@@ -32,12 +32,6 @@ related_perspectives: [architecture, monorepo]
 
 **app（主要）**: 上記チェック項目を、import 関係グラフと Git 変更履歴を用いて評価する。特に「徐々に肥大化した God モジュール」「後から混入したレイヤー違反・循環依存」を時系列で捉える。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) の architecture に準じる。
-- **Critical**: 循環依存でビルド/起動不能、レイヤー違反でセキュリティ境界が壊れる
-- **High**: 依存方向の逆転、God モジュールの広範な被参照
-
 ## 関連観点
 
 - [architecture](architecture.md): 現時点の設計妥当性

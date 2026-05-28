@@ -36,12 +36,6 @@ related_perspectives: [dependencies, data-integrity]
 
 変更された公開シンボル（関数・クラス・エクスポート・HTTP エンドポイント・CLI フラグ・環境変数）の呼び出し元/参照箇所を確認し、既存利用者が壊れないか・非推奨化の4手順を踏んでいるかを評価する。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 公開 API の破壊的変更で既存クライアントが起動失敗、DB マイグレーションが後方非互換
-- **High**: デフォルト値の変更で挙動が静かに変わる、非推奨化手順を踏まない削除
-
 ## 関連観点
 
 - [dependencies](dependencies.md): 依存更新に伴う破壊的変更

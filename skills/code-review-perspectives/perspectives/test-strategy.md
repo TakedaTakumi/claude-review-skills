@@ -57,12 +57,6 @@ related_perspectives: [test-coverage, test-quality, test-pyramid]
 - PBT 過剰採用（ビジネスルール境界値の例示が消えている）
 - 生成器の品質（境界値: 空、最大、Unicode、NaN）
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: PBT を装って実質1ケースしか生成されていない、プロパティが実装の写像（トートロジー）
-- **High**: 例示テストで書くべき回帰ケースが PBT に吸収されて消えた
-
 ## 関連観点
 
 - [test-pyramid](test-pyramid.md): テスト種類のバランス（戦略とは別軸）

@@ -84,12 +84,6 @@ related_perspectives: [ddd-strategic, architecture, data-integrity]
 - DDD 採用が不明確な場合、`Aggregate`/`Entity`/`ValueObject`/`Repository`/`DomainEvent`/`domain/` ディレクトリ等の手がかりを確認し、なければ「DDD 採用の証跡が見当たらないため評価をスキップ」と明示する。
 - DDD 用語を**コードに無理矢理当てはめない**こと。意図的に DDD を採用しているかを判断材料にする。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 集約境界をまたいだ不変条件違反でデータ整合性破壊、別コンテキストのエンティティを ACL なしで直接結合
-- **High**: Anemic Domain Model、リポジトリへのビジネスロジック混入、ユビキタス言語の重大な不一致
-
 ## 関連観点
 
 - [ddd-strategic](ddd-strategic.md): コンテキスト境界・成熟度（リポジトリ全体）

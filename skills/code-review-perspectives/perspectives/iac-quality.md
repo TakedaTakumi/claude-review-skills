@@ -40,11 +40,6 @@ related_perspectives: [security, runtime-config, data-integrity]
 
 **iac（主要）**: 上記チェック項目を、Phase 0 で検出した IaC ツール（Terraform/k8s/Ansible 等）に応じて適用する。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う（security の IaC 例も参照）。
-- Critical 相当: 過剰な IAM 権限、平文 secret、公開された S3 / SG の `0.0.0.0/0`（[security](security.md) と連携）
-
 ## 関連観点
 
 - [security](security.md): IaC のセキュリティ（IAM 権限、暗号化）

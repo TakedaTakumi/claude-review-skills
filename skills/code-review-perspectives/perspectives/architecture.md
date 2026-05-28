@@ -45,12 +45,6 @@ related_perspectives: [architecture-drift, ddd-tactical, monorepo]
 - 起点（通常はプレゼン層）から最も内側（ドメイン）までの依存方向が健全か
 - ファイル粒度・モジュール境界がスライス内で揃っているか
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 循環依存でビルド/起動不能、レイヤー違反でセキュリティ境界が壊れる
-- **High**: 単一責任原則の重度違反、依存方向の逆転
-
 ## 関連観点
 
 - [architecture-drift](architecture-drift.md): 時系列での設計逸脱の蓄積

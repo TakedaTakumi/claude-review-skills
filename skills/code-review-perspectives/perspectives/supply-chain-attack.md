@@ -93,12 +93,6 @@ related_perspectives: [security, dependencies, observability]
 - コミット署名は補助的（署名なし自体は問題でなく、**普段は署名されるのに今回だけなし**といった変化が疑わしい）。
 - リポジトリ全体評価は長時間化に注意。`--full` 以外では概況スキャンに留め、深掘りは指示を待つ。
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 確信度高のバックドア・認証バイパス・リバースシェル風処理・既知の悪意ある依存パッケージの追加
-- **High**: 確信度中の不審な動的コード実行、不可解な処理連鎖、postinstall スクリプト追加、コミット署名異常
-
 ## 関連観点
 
 - [security](security.md): うっかりミス由来の脆弱性は別観点

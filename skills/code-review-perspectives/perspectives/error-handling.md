@@ -38,12 +38,6 @@ related_perspectives: [data-integrity, observability]
 - レイヤー境界での例外の握りつぶし
 - ユーザー向けエラーメッセージと内部ログの分離
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: catch して握りつぶした結果データが壊れる、リソースリークでサービス停止
-- **High**: リトライ無限ループ、ユーザー向けに内部スタックトレース露出、エラー時の部分的状態変更が残る
-
 ## 関連観点
 
 - [data-integrity](data-integrity.md): エラー時の状態一貫性・補償

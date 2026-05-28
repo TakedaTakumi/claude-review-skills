@@ -54,12 +54,6 @@ related_perspectives: [ddd-tactical, error-handling, security]
 - スライス内の冪等性設計（リトライ可能か）
 - イベント発行と DB 更新の順序（outbox パターン）
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: トランザクション欠如で金銭/在庫が壊れる、外部 API をトランザクション内に含めて長時間ロック、冪等性なしの課金処理
-- **High**: lost update が起きる Read-Modify-Write、強整合性が必要な箇所で結果整合性、マイグレーションの非冪等性
-
 ## 関連観点
 
 - [ddd-tactical](ddd-tactical.md): 集約境界とトランザクション境界の整合

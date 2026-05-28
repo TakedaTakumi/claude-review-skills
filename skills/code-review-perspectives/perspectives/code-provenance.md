@@ -41,12 +41,6 @@ related_perspectives: [test-quality, maintainability, dependencies]
 - スライス内に他コンテキストから流用されたコードの兆候
 - 既存パターンと不整合な実装
 
-## 重大度の判断例
-
-判断基準は [severity-criteria.md](../templates/severity-criteria.md) に従う。
-- **Critical**: 幻覚 API による起動時エラー、実装と同 AI 生成のテストで「動作している風」だが本質を検証していない
-- **High**: 過剰な抽象化レイヤ、既存パターン無視の独自実装
-
 ## 関連観点
 
 - [test-quality](test-quality.md): テストの自作自演
