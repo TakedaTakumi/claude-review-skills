@@ -55,6 +55,18 @@
 - コードブロックで囲む
 - 不可視文字・双方向制御文字・ホモグリフを含めない
 
+## CI（GitHub Actions）
+
+`.github/workflows/check.yml` に 3 ジョブを置いています:
+
+| ジョブ | 内容 | ローカル再現 |
+|---|---|---|
+| `unicode` | 観点ファイル等への不可視文字／双方向制御文字／BOM の混入検出（prompt injection 予防） | `grep -rPln '[\x{200B}-\x{200F}\x{202A}-\x{202E}\x{2066}-\x{2069}\x{FEFF}]' --include='*.md' --include='*.sh' .` |
+| `shellcheck` | `install.sh` の静的解析 | `shellcheck install.sh` |
+| `gitleaks` | シークレットの誤コミット検出 | `gitleaks detect` |
+
+トリガーは `main` / `develop` への push、`pull_request`、`workflow_dispatch`（GitHub UI / `gh workflow run check.yml` から手動実行）。GitHub 公式 actions は major version tag、third-party action は commit SHA pin（ci-quality 観点準拠）。
+
 ## セルフレビュー（dogfooding）
 
 変更後、本リポジトリ自身に対して `/review-branch` や `/review-repo` を実行することで、観点ライブラリ自体の品質を担保できます。

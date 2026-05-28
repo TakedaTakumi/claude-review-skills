@@ -11,6 +11,7 @@
 - `CHANGELOG.md` — 本ファイル
 - `docs/MAINTAINER_NOTES.md` — 観点・分類・Agent 追加時の同期チェックリスト（メンテナー向け）
 - `docs/legacy/README.md` — 旧 spec の凍結方針と「真実の源は現リポジトリ」を明示
+- `.github/workflows/check.yml` — GitHub Actions CI（3 ジョブ）: Unicode 不可視文字・双方向制御文字スキャン、`install.sh` の shellcheck、gitleaks シークレットスキャン。トリガーは `main` / `develop` への push、pull_request、手動実行（workflow_dispatch）。`permissions: contents: read` で最小権限、third-party action は commit SHA pin（ci-quality 観点準拠）
 
 ### Changed
 

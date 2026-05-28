@@ -1,0 +1,64 @@
+name: check
+
+# このリポジトリ自身が提供する観点 `ci-quality` の自己レビューを意識して構成:
+# - permissions は最小（contents: read のみ）
+# - GitHub 公式 actions/* は major-version tag、third-party action は SHA pin
+# - 失敗時は赤くなる（個人ツールのミス予防が目的）
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # 観点ファイル・Agent ファイルへのプロンプトインジェクション混入を予防する。
+  # ZWSP/ZWNJ/方向制御文字/BOM 等が現れたら CI を落とす。
+  unicode:
+    name: invisible / bidi character scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: scan
+        run: |
+          set -euo pipefail
+          if grep -rPln '[\x{200B}-\x{200F}\x{202A}-\x{202E}\x{2066}-\x{2069}\x{FEFF}]' \
+              --include='*.md' \
+              --include='*.sh' \
+              --include='*.yml' \
+              --include='*.yaml' \
+              .; then
+            echo "::error::invisible or bidi control characters detected" >&2
+            exit 1
+          fi
+          echo "OK: no invisible/bidi characters"
+
+  # install.sh の静的解析。bash 4+ 想定。
+  shellcheck:
+    name: shellcheck install.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: run
+        run: shellcheck install.sh
+
+  # シークレットスキャン。実コードを置かない設計だが将来寄稿時の事故防止。
+  # gitleaks-action は third-party のため commit SHA pin（ci-quality 観点）。
+  # 値は `v2` タグ（2025-04-17）の commit SHA。
+  # 更新時: `gh api repos/gitleaks/gitleaks-action/git/refs/tags/<tag>` で取得後、
+  # annotated tag の場合は `git/tags/<tag-sha>` で commit SHA に dereference する。
+  gitleaks:
+    name: gitleaks secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7  # v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
