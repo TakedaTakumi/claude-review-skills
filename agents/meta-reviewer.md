@@ -1,7 +1,7 @@
 ---
 name: meta-reviewer
 description: メタ観点（governance, documentation, i18n-a11y）の専門レビュアー。リポジトリ運営の健全性・ドキュメント・国際化/アクセシビリティを担当する。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Meta Reviewer

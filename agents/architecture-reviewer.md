@@ -1,7 +1,7 @@
 ---
 name: architecture-reviewer
 description: 構造観点（architecture, architecture-drift, monorepo）の専門レビュアー。設計の妥当性・時系列の構造ドリフト・モノレポ構造の健全性を担当する。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Architecture Reviewer

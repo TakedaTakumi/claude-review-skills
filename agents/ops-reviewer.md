@@ -1,7 +1,7 @@
 ---
 name: ops-reviewer
 description: 運用観点（runtime-config, devenv-quality, ci-quality, iac-quality, observability）の専門レビュアー。ランタイム構成・開発環境・CI パイプライン・IaC の品質と可観測性を担当する。旧 infrastructure 観点を引き継ぐ。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Ops Reviewer

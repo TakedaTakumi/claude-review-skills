@@ -1,7 +1,7 @@
 ---
 name: dependencies-reviewer
 description: 依存観点（dependencies）の専門レビュアー。依存関係・ライブラリの追加/更新の妥当性、ライセンス、メンテ状況、サプライチェーンリスクを担当する。security-reviewer の supply-chain-attack（build 部分）と連携する。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Dependencies Reviewer

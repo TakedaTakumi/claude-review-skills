@@ -1,7 +1,7 @@
 ---
 name: security-reviewer
 description: セキュリティ観点（security, supply-chain-attack）の専門レビュアー。攻撃者目線での脆弱性検出と、バックドア・悪意あるコード混入の検出を担当する。ブランチ差分・リポジトリ全体・機能スライスのセキュリティ評価で使う。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Security Reviewer

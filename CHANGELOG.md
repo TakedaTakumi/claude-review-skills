@@ -25,6 +25,7 @@
 ### Security
 
 - `.gitignore`: シークレットファイルパターン（`.env*`・`*.pem`・`*.key`・`id_rsa*` 等）を予防的に除外
+- Sub Agent 11 個の `tools:` を `Bash` 無制限から `Bash(git:*), Bash(rg:*)` に絞り込み（最小権限の原則）。Slash Command 側の `allowed-tools` パターンに揃え、Agent 経由でのファイル削除・ネットワーク呼び出し等の権限を遮断
 
 ## [0.1.0] - 2026-05-28
 

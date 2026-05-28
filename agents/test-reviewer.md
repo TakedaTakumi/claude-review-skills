@@ -1,7 +1,7 @@
 ---
 name: test-reviewer
 description: テスト観点（test-coverage, test-quality, test-strategy, test-pyramid）の専門レビュアー。網羅性・テスト品質・PBT 戦略・テストピラミッドのバランスを担当する。本プロジェクトは PBT(fast-check) 採用。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Test Reviewer

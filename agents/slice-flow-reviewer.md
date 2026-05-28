@@ -1,7 +1,7 @@
 ---
 name: slice-flow-reviewer
 description: review-slice 専用の情報フロー専門レビュアー。slice-cohesion（スライスの凝集度・境界）と、入口→出口の情報フロー追跡を担当する。security/supply-chain のスライス評価が使う情報フローの土台を提供する。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Slice Flow Reviewer

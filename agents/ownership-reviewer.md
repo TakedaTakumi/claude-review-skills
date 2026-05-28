@@ -1,7 +1,7 @@
 ---
 name: ownership-reviewer
 description: 履歴・由来観点（ownership, code-provenance）の専門レビュアー。バス係数・単一メンテナ依存（Git 履歴）と、AI 生成/コピペコード起源のリスクを担当する。
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash(git:*), Bash(rg:*)
 ---
 
 # Ownership Reviewer
