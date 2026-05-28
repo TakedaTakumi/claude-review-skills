@@ -1,0 +1,16 @@
+# OS / editor artifacts
+.DS_Store
+*.swp
+node_modules/
+
+# Secrets — このリポジトリは実コードを置かない設計だが、将来寄稿時の事故防止として広めに除外
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+id_rsa*
+*.kdbx

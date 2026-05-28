@@ -1,5 +1,10 @@
 # Code Review Skills 移行計画書
 
+> ⚠️ **本書は移行作業開始時点（2026-05）の計画書で、観点数は 21観点ベースの当時値です。**
+> 移行完了後（Phase 8 まで）に観点を拡張し、現在のリポジトリは **32観点 × 8分類** で運用されています。
+> **観点・分類の最新カタログは [skills/code-review-perspectives/SKILL.md](skills/code-review-perspectives/SKILL.md) および [docs/PERSPECTIVES.md](docs/PERSPECTIVES.md) を参照してください。**
+> 本書は移行の経緯・設計判断の記録として保持されており、現運用の真実の源ではありません。
+
 このドキュメントは、3つのスラッシュコマンド（review-branch / review-repo / review-slice）を Claude Code の **Skill + Sub Agent + 軽量 Slash Command** の組み合わせに再構築するための完全な計画書です。Claude Code がこの計画書を読んでゼロから実装することを想定しています。
 
 ---
