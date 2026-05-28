@@ -18,8 +18,8 @@
 set -euo pipefail
 
 CLAUDE_DIR="${CLAUDE_DIR:-$HOME/.claude}"
-if [ -z "$CLAUDE_DIR" ] || [ "$CLAUDE_DIR" = "/" ]; then
-  echo "error: CLAUDE_DIR must be a non-empty, non-root path (got: '${CLAUDE_DIR}')" >&2
+if [ -z "$CLAUDE_DIR" ] || [ "$CLAUDE_DIR" = "/" ] || [ "${CLAUDE_DIR#-}" != "$CLAUDE_DIR" ]; then
+  echo "error: CLAUDE_DIR must be a non-empty, non-root path not starting with '-' (got: '${CLAUDE_DIR}')" >&2
   exit 1
 fi
 CLAUDE_DIR="${CLAUDE_DIR%/}"
@@ -48,8 +48,11 @@ mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/commands"
 SKIPPED=""
 
 # dest が「本ツールが張った src への symlink」かどうか
+# readlink に -- を付けない（BSD/macOS の readlink は -- を解釈しないため）。
+# 先頭ハイフン経路は CLAUDE_DIR の入力検証で弾いているので readlink への
+# 引数も先頭ハイフンにはならない。
 is_own_link() {
-  [ -L "$1" ] && [ "$(readlink -- "$1" 2>/dev/null)" = "$2" ]
+  [ -L "$1" ] && [ "$(readlink "$1" 2>/dev/null)" = "$2" ]
 }
 
 # 本ツール由来でない既存 dest を上書きしてよいか判定する。0=上書き可 / 1=スキップ
@@ -80,14 +83,14 @@ link_or_copy() {
       return 0
     fi
   fi
-  rm -rf "$dest"   # real dir でも安全に置き換える
+  rm -rf -- "$dest"   # real dir でも安全に置き換える（-- で dash-leading パス保護）
   if [ "$MODE" = "symlink" ]; then
-    if ln -sfn "$src" "$dest" 2>/dev/null; then
+    if ln -sfn -- "$src" "$dest" 2>/dev/null; then
       return 0
     fi
     echo "warn: symlink に失敗したためコピーにフォールバック: $dest" >&2
   fi
-  cp -R "$src" "$dest"
+  cp -R -- "$src" "$dest"
 }
 
 # Skill（ディレクトリごと）

@@ -23,10 +23,15 @@
 - `docs/PERSPECTIVES.md`: 観点カタログの一次資料を SKILL.md に統一し、本ファイルは「適用コマンド絵文字 + Agent グルーピング」の二次ビューとして位置付けを冒頭に明示
 - `docs/CATEGORIES.md`: 分類カタログの一次資料を SKILL.md に統一し、本ファイルは「典型パス・本質」の二次ビューとして位置付けを冒頭に明示。重複していた「✅ 主要と ⚠️ 補助の運用差」表は SKILL.md への参照に置換
 - 17 観点ファイルの「## 重大度の判断例」節を削除し、判断例の一次資料を `templates/severity-criteria.md` に統一。severity-criteria.md の表に `architecture-drift` と `iac-quality` の行を追加して網羅。観点ファイルは全て「役割 → チェック項目 → 文脈別の読み替え → 関連観点」の 4 節構成に統一
+- `test-strategy.md` / `agents/test-reviewer.md`: PBT 採用を「本プロジェクトの前提」から「採用時のみ適用、Phase 0 で検出」の条件付きに書き換え。fast-check 以外（hypothesis / proptest 等）も例示
+- `runtime-config.md` / `devenv-quality.md`: 「Docker compose + VSCode devcontainer 前提」のハードコードを削除し、Phase 0 で検出されたスタック・ツールチェーンに応じて条件付きで適用する旨に書き換え
+- `docs/MIGRATION_NOTES.md`: 「真実の源は legacy ファイル」の表現を `applicable_commands` の判断スコープに限定し、現運用全体の真実の源は本リポジトリであることを明示
 
 ### Fixed
 
 - `install.sh`: `CLAUDE_DIR` が空文字列・ルート (`/`)・末尾スラッシュ付きパスでも安全に動作するよう入力検証を追加（特に `CLAUDE_DIR="/"` で `rm -rf` が予期せぬパスを対象にしうる経路を遮断）
+- `install.sh`: `CLAUDE_DIR` が `-` で始まるパス（例: `-tmp/claude`）を弾くガードを追加。`rm -rf` / `ln -sfn` / `cp -R` のオペランドの前に `--` を付与し dash-leading パスをオプションと誤解しないように防御（Copilot review #2 で指摘）
+- `install.sh`: `readlink` から `--` を削除し BSD/macOS の readlink でも動作するよう移植性を改善（Copilot review #1 で指摘）
 
 ### Security
 

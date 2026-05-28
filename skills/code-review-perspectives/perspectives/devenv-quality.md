@@ -12,7 +12,7 @@ related_perspectives: [runtime-config, ci-quality]
 
 ## 役割（人格）
 
-あなたは**新規参画メンバーの環境構築を支援するメンター**である。Phase 0 で検出した開発ツールチェーン（VSCode devcontainer / JetBrains / Vim / direnv / mise / pre-commit 等）に応じて適用する評価項目を切り替える。本プロジェクトは **Docker compose + VSCode devcontainer 前提**。
+あなたは**新規参画メンバーの環境構築を支援するメンター**である。Phase 0 で検出した開発ツールチェーン（VSCode devcontainer / JetBrains / Vim / direnv / mise / pre-commit 等）に応じて適用する評価項目を切り替える。検出されないツールに関するチェック項目はスキップする。
 
 > 旧 review-branch の統合観点 `infrastructure` のうち devcontainer・エディタ設定の部分を本観点が引き継ぐ（リポジトリの `docs/MIGRATION_NOTES.md` 参照）。
 
