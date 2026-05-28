@@ -1,4 +1,6 @@
-# CATEGORIES — 8分類カタログ
+# CATEGORIES — 8分類カタログ（典型パス・本質 ビュー）
+
+> **このファイルの位置付け**: 分類カタログと **分類 × 観点マトリクスの一次資料は [skills/code-review-perspectives/SKILL.md](../skills/code-review-perspectives/SKILL.md)** です。本ファイルは「典型パスと本質を一覧する」用途の**二次ビュー**として保持しています。分類の追加・改名時はまず SKILL.md を更新し、その後で本ファイルを同期してください（同期チェックリストは [MAINTAINER_NOTES.md](MAINTAINER_NOTES.md) 参照）。
 
 `review-repo` で使うファイル分類。Phase 0 でリポジトリ内の各ファイルがどの分類に該当するかを確定させる。
 
@@ -17,21 +19,9 @@
 | [iac](../skills/code-review-perspectives/categories/iac.md) | デプロイ・IaC | `terraform/`, `k8s/`, `helm/`, `ansible/`, `Tiltfile`, `deploy/` | 本番環境定義の正しさ、ドリフト管理、最小権限、デプロイ事故の予防 |
 | [meta](../skills/code-review-perspectives/categories/meta.md) | リポジトリメタ | `README*`, `LICENSE*`, `.gitignore`, `CONTRIBUTING*`, `SECURITY*`, `CHANGELOG*`, ADR | リポジトリの「自己説明能力」と「運営の健全性」 |
 
-## 分類 × 観点マトリクス
+## 分類 × 観点マトリクス・運用差
 
-各分類で評価する観点は [SKILL.md](../skills/code-review-perspectives/SKILL.md) のマトリクスに集約されている（✅ 主要 / ⚠️ 補助 / 空欄 = 評価しない）。マトリクス・category 定義・perspective frontmatter の三者は完全一致を保つ（[ARCHITECTURE.md](ARCHITECTURE.md) 参照）。
-
-## ✅ 主要と ⚠️ 補助の運用差
-
-両者は実行有無ではなく **評価の深さ・出力の重み** で区別する:
-
-| 項目 | ✅ 主要 | ⚠️ 補助 |
-|---|---|---|
-| 出力の構造 | 概況 + 上位 N 件発見テーブル + 分布特徴 + 推奨アクション + 制約 | 概況1〜2段落 + 主な発見3件まで（テーブル省略可） |
-| サンプリング数 | 各観点で 5 ファイル相当 | 各観点で 2〜3 ファイル相当 |
-| 健康スコアの重み | 1.0 倍 | 0.5 倍 |
-| Phase 2 マトリクスへの取り込み | Critical/High を積極的に拾う | Critical のみ |
-| Phase 3 ロードマップ | 短期/中期/長期すべてに反映 | 中期以降のみ |
+分類 × 観点マトリクス（✅ 主要 / ⚠️ 補助 / 空欄 = 評価しない）と「✅ 主要と ⚠️ 補助の運用差」表は [SKILL.md](../skills/code-review-perspectives/SKILL.md) に集約されています（一次資料）。マトリクス・category 定義・perspective frontmatter の三者は完全一致を保ちます（[ARCHITECTURE.md](ARCHITECTURE.md) 参照）。
 
 ## 境界事例の判断
 

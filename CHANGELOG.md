@@ -10,6 +10,7 @@
 - `SECURITY.md` — 脆弱性報告チャネル（GitHub Security Advisories）を明示
 - `CHANGELOG.md` — 本ファイル
 - `docs/MAINTAINER_NOTES.md` — 観点・分類・Agent 追加時の同期チェックリスト（メンテナー向け）
+- `docs/legacy/README.md` — 旧 spec の凍結方針と「真実の源は現リポジトリ」を明示
 
 ### Changed
 
@@ -17,6 +18,9 @@
 - `README.md`: インストール要件として Claude Code（動作確認 2.1.150）と bash 4+ を明示
 - `README.md`: MIGRATION_PLAN.md の紹介文を「21観点ベースの旧計画書／現32観点」に補注
 - `MIGRATION_PLAN.md`: 冒頭に「移行時点の 21観点ベース、最新は SKILL.md / docs/PERSPECTIVES.md 参照」の警告ボックスを追加
+- `skills/code-review-perspectives/SKILL.md`: L13 を「真実の源（移行元）」から「移行元（凍結済み）」へ書き換え、現リポジトリが一次資料であることを明示
+- `docs/PERSPECTIVES.md`: 観点カタログの一次資料を SKILL.md に統一し、本ファイルは「適用コマンド絵文字 + Agent グルーピング」の二次ビューとして位置付けを冒頭に明示
+- `docs/CATEGORIES.md`: 分類カタログの一次資料を SKILL.md に統一し、本ファイルは「典型パス・本質」の二次ビューとして位置付けを冒頭に明示。重複していた「✅ 主要と ⚠️ 補助の運用差」表は SKILL.md への参照に置換
 
 ### Fixed
 

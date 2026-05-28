@@ -1,4 +1,6 @@
-# PERSPECTIVES — 32観点カタログ
+# PERSPECTIVES — 32観点カタログ（適用コマンド・Agent グルーピング ビュー）
+
+> **このファイルの位置付け**: 観点カタログの **一次資料は [skills/code-review-perspectives/SKILL.md](../skills/code-review-perspectives/SKILL.md)** です。本ファイルは「観点を担当 Sub Agent ごとにグルーピングし、適用コマンド（🌿📦🔬）を絵文字でひと目把握する」用途の**二次ビュー**として保持しています。観点の追加・改名時はまず SKILL.md を更新し、その後で本ファイルを同期してください（同期チェックリストは [MAINTAINER_NOTES.md](MAINTAINER_NOTES.md) 参照）。
 
 各観点の詳細（役割・チェック項目・文脈別の読み替え・重大度例）は [perspectives/](../skills/code-review-perspectives/perspectives/) の対応ファイルを参照。`applicable_commands` は legacy 実体から導出（[MIGRATION_NOTES.md](MIGRATION_NOTES.md) §B 参照）。
 
