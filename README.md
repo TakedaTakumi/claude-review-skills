@@ -61,15 +61,17 @@ CLAUDE_DIR=/path ./install.sh # 配置先を上書き
 
 ## ドキュメント
 
-- [MIGRATION_PLAN.md](MIGRATION_PLAN.md) — 移行計画書（移行作業開始時点の 21観点ベース／現在は 32観点で運用、経緯記録として保持）
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Skill + Sub Agent + Slash Command の設計
 - [docs/USAGE.md](docs/USAGE.md) — 3コマンドの使い方・引数・例
 - [docs/PERSPECTIVES.md](docs/PERSPECTIVES.md) — 32観点のカタログ
 - [docs/CATEGORIES.md](docs/CATEGORIES.md) — 8分類のカタログ
 - [docs/MIGRATION_NOTES.md](docs/MIGRATION_NOTES.md) — 移行時の構造組み替えと差異記録
+- [CHANGELOG.md](CHANGELOG.md) — 変更履歴（Keep a Changelog 形式）
+- [MIGRATION_PLAN.md](MIGRATION_PLAN.md) — 移行計画書（移行作業開始時点の 21観点ベース、経緯記録として保持）
 
-## カスタマイズ
+## 利用方針
 
-- **観点を追加**: [skills/code-review-perspectives/perspectives/](skills/code-review-perspectives/perspectives/) に1ファイル追加し、[SKILL.md](skills/code-review-perspectives/SKILL.md) のカタログに行を足す。担当 Agent の description にも追記。
-- **分類を追加**（稀）: [categories/](skills/code-review-perspectives/categories/) に1ファイル追加し、SKILL.md のマトリクスに列を追加。各観点ファイルの `applicable_categories_for_repo` を更新。
-- **Agent を再編**: [agents/](agents/) に追加・修正し、対応する Slash Command の委任先を更新。
+本リポジトリは **個人ツールとして公開** しているもので、外部からの Pull Request は基本的に受け付けていません。利用・フォーク・派生は [LICENSE](LICENSE)（MIT）の範囲で自由に行ってください（保証なし）。
+
+- 脆弱性を見つけた場合のみ [SECURITY.md](SECURITY.md) に沿って GitHub Security Advisories に報告してください。
+- メンテナンス用の同期チェックリストは [docs/MAINTAINER_NOTES.md](docs/MAINTAINER_NOTES.md) にあります（メンテナーと作業を補助する Claude Code 向け）。
