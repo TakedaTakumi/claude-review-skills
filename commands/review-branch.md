@@ -45,7 +45,7 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(rg:*), Read, Grep, Glob
 
 ### Phase 3: サマリー出力
 
-総評（マージ可否 ✅/⚠️/❌）、必須対応（Critical/High）、推奨対応（Medium）、今後の改善提案（Low/Info）、評価サマリ表。重大度は Skill の `templates/severity-criteria.md`。
+総評（マージ可否 ✅/⚠️/❌）、良かった点（**指摘より先に提示・必須**。無ければ「特になし」）、必須対応（Critical/High）、推奨対応（Medium）、今後の改善提案（Low/Info）、評価サマリ表。重大度は Skill の `templates/severity-criteria.md`。
 
 ## 動作上の注意
 
