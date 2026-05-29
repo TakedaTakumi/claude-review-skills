@@ -41,7 +41,7 @@ allowed-tools: Bash(git:*), Bash(rg:*), Read, Grep, Glob
 ### Phase 2 / 3
 
 - **2 スライス全体のセルフレビュー**: 観点間整合、誤検知、境界貫通の妥当性。
-- **3 スライスサマリ**: 構成サマリ、Critical/High、スライスとしての推奨アクション、観点別スコア（1〜5）。重大度は Skill の `templates/severity-criteria.md`。
+- **3 スライスサマリ**: 構成サマリ、良かった点（**指摘より先に提示・必須**。無ければ「特になし」）、Critical/High、スライスとしての推奨アクション、観点別スコア（1〜5）。重大度は Skill の `templates/severity-criteria.md`。
 
 ## 動作上の注意
 
