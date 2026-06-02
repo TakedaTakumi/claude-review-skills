@@ -7,7 +7,7 @@
 
 ### Added
 
-- `/review-slice` のシンボル起点（`<ファイル>::<シンボル>`）— 関数 / クラス / `Class.method` を起点に指定可能（issue #4）。起点ファイル内を「経路上（span）/ 起点同居（span 外）」にタグ区別し、依存追跡を span 内参照に限定するハイブリッドスライス。`::` 無しは従来どおりファイル全体起点で後方互換。解決失敗は Phase 0 停止＋確認、span 曖昧／ネスト・ラムダ・動的生成は whole-file 縮退で警告。`commands/review-slice.md` / `agents/slice-flow-reviewer.md` / `slice-flow-template.md` / `slice-cohesion.md` / `output-format.md` / `docs/USAGE.md` を更新
+- `/review-slice` のシンボル起点（`<ファイル>::<シンボル>`）— 関数 / クラス / `Class.method` を起点に指定可能（issue #4）。起点ファイル内を「経路上（span）/ 起点同居（span 外）」にタグ区別し、依存追跡を span 内参照に限定するハイブリッドスライス。`::` 無しは従来どおりファイル全体起点で後方互換。解決失敗は Phase 0 停止＋確認、span 曖昧／ネスト・ラムダ・動的生成はファイル全体起点に縮退して警告。`commands/review-slice.md` / `agents/slice-flow-reviewer.md` / `slice-flow-template.md` / `slice-cohesion.md` / `output-format.md` / `docs/USAGE.md` を更新
 - `SECURITY.md` — 脆弱性報告チャネル（GitHub Security Advisories）を明示
 - `CHANGELOG.md` — 本ファイル
 - `docs/MAINTAINER_NOTES.md` — 観点・分類・Agent 追加時の同期チェックリスト（メンテナー向け）

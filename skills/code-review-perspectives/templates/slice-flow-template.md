@@ -54,16 +54,16 @@ presentation → application → domain → infrastructure
 ### 入口
 - 起点シンボル: OrderService.checkout（src/app/order_service.py::OrderService.checkout, application）
 - 受け取る情報: 注文確定リクエスト（order_id, payment_token）
-- 起点同居（span 外・参考）: 同ファイルの OrderService.cancel ほか（スライスには含めない／責務集中の判断材料）
+- 起点同居（span 外・参考）: 同ファイルの OrderService.cancel ほか（スライス本体＝経路上＋依存先には含めない／責務集中の判断材料）
 
 ### 経路（span 内参照のみ辿る）
 | 深さ | パス | レイヤー | タグ | 処理 | 外部作用 |
 |---|---|---|---|---|---|
-| 0 | order_service.py::OrderService.checkout | application | 経路上 | 業務調整 | なし |
-| 1 | payment_gateway.py | infrastructure | 依存先 | 決済要求 | 外部 API 送信 |
+| 0 | src/app/order_service.py::OrderService.checkout | application | 経路上 | 業務調整 | なし |
+| 1 | src/infra/payment_gateway.py | infrastructure | 依存先 | 決済要求 | 外部 API 送信 |
 
 ### 出口（副作用の棚卸し）
-- 外部 API 送信: payment_gateway.py:42（決済）
+- 外部 API 送信: src/infra/payment_gateway.py:42（決済）
 ```
 
 ## 攻撃経路・悪意混入の注目ポイント
