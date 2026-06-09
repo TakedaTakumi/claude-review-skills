@@ -63,6 +63,7 @@ CLAUDE_DIR=/path ./install.sh # 配置先を上書き
 
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Skill + Sub Agent + Slash Command の設計
 - [docs/USAGE.md](docs/USAGE.md) — 3コマンドの使い方・引数・例
+- [docs/GITHUB_ACTIONS.md](docs/GITHUB_ACTIONS.md) — 別リポの PR で自動レビューを動かす設定手順（サンプル: [examples/claude-review.yml](examples/claude-review.yml)）
 - [docs/PERSPECTIVES.md](docs/PERSPECTIVES.md) — 32観点のカタログ
 - [docs/CATEGORIES.md](docs/CATEGORIES.md) — 8分類のカタログ
 - [docs/MIGRATION_NOTES.md](docs/MIGRATION_NOTES.md) — 移行時の構造組み替えと差異記録

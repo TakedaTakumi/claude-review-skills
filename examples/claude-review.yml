@@ -1,0 +1,74 @@
+# claude-review-skills を GitHub Actions で動かすサンプルワークフロー。
+#
+# 対象リポジトリ（このツールとは別のリポ）の `.github/workflows/` にコピーして使う。
+# 詳しい手順・カスタマイズ・トラブルシュートは docs/GITHUB_ACTIONS.md を参照。
+#
+# やること: PR が「opened」されたら /review-branch を実行し、結果を PR コメントに投稿する。
+#
+# 事前準備（必須）:
+#   1. リポジトリ Secrets に ANTHROPIC_API_KEY を登録（Anthropic Console で発行）
+#   2. 下の REVIEW_SKILLS_REF を使いたいタグ/SHA に固定（既定は release_20260528）
+
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened]   # 再 push（synchronize）では再実行しない。必要なら synchronize を足す。
+
+# 自動実行モードの action が結果を PR コメントとして投稿するため write 権限が必要。
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+# 同一 PR の多重起動を抑止（任意）。
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      # /review-branch は merge-base 差分を取るため全履歴が必要。
+      - name: Checkout PR (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # base ブランチをローカルに用意する。
+      # コマンドは「勝手に fetch しない（ユーザーに確認）」設計で、CI には確認相手がいないため
+      # ここで先に取得しておく。
+      - name: Pre-fetch base branch
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "+refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}"
+
+      # claude-review-skills を固定タグで取得し、install.sh で対象リポの .claude/ に展開する。
+      # checkout 後の $GITHUB_WORKSPACE/.claude は claude-code-action がプロジェクト設定として
+      # 自動読込する（skills / agents / commands）。
+      - name: Install claude-review-skills into .claude/
+        env:
+          # ★ 固定参照。タグ・ブランチ・SHA いずれも可。更新時はここを変える。
+          REVIEW_SKILLS_REF: release_20260528
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch "$REVIEW_SKILLS_REF" \
+            https://github.com/TakedaTakumi/claude-review-skills.git /tmp/claude-review-skills
+          CLAUDE_DIR="$GITHUB_WORKSPACE/.claude" bash /tmp/claude-review-skills/install.sh --copy
+
+      # /review-branch を自動実行。結果は action が PR コメントに投稿する。
+      - name: Run /review-branch
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # 第1引数は省略＝全観点。base は PR のベースブランチ（このツールは = 区切り必須）。
+          prompt: "/review-branch --base=${{ github.event.pull_request.base.ref }}"
+          # Sub Agent 群が使うツールを許可（CI は権限プロンプト不可のため明示）。
+          # モデル・ターン上限は対象リポのコスト方針に合わせて調整する。
+          claude_args: |
+            --model claude-sonnet-4-6
+            --max-turns 40
+            --allowedTools Read,Grep,Glob,Task,Bash(git:*),Bash(gh:*),Bash(rg:*)
