@@ -3,7 +3,7 @@
 .DEFAULT_GOAL := help
 .PHONY: help
 help:
-	@awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2} /^## .* ##$$/ {if (n++) print ""; print; next}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2} /^## .* ##$$/ {if (n++) print ""; print; next}' $(MAKEFILE_LIST) | $${PAGER:-less -R}
 
 .PHONY: install install-copy install-force install-copy-force
 
