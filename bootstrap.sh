@@ -30,6 +30,6 @@ fi
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf -- "$TMP_DIR"' EXIT
 
-gh api "repos/$REPO/tarball" | tar xz -C "$TMP_DIR" --strip-components=1
+gh api "repos/$REPO/tarball" | tar xzf - -C "$TMP_DIR" --strip-components=1
 
 bash "$TMP_DIR/install.sh" --copy "$@"
