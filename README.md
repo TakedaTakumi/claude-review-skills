@@ -87,7 +87,7 @@ gh api repos/TakedaTakumi/claude-review-skills/contents/bootstrap.sh -H "Accept:
 | `~/.claude` を別 Docker コンテナにバインドする運用 | `make install-copy` / `./install.sh --copy` | symlink のターゲットパスはコンテナ内に存在しないため壊れる |
 | `~/.claude` を **`code-review-perspectives` 以外**の用途にも使っている | （安全策の症状なし時はそのまま） | install.sh は自前の名前（`code-review-perspectives` / `*-reviewer.md` / `review-{branch,repo,slice}.md`）以外には触れない。同名衝突がある場合はガードが効いて確認を求める |
 
-`--copy`（`make install-copy`）で配置した場合、観点・Agent・コマンドを編集した後は `make install-copy`（または `./install.sh --copy`）の再実行が必要です（symlink では不要）。`CLAUDE_DIR` で配置先を変えたい場合は `./install.sh` を直接使ってください（`make` ターゲットには相当するオプションがありません）。
+`--copy`（`make install-copy`）で配置した場合、観点・Agent・コマンドを編集した後は `make install-copy`（または `./install.sh --copy`）の再実行が必要です（symlink では不要）。`CLAUDE_DIR` で配置先を変えたい場合は `CLAUDE_DIR=/path make install-copy` のように環境変数で指定できます（`./install.sh` 直接実行でも同様）。
 
 ## ドキュメント
 
