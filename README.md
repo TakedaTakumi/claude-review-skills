@@ -62,6 +62,22 @@ CLAUDE_DIR=/path ./install.sh # 配置先を上書き
 
 実行には bash が必要です。`sh install.sh` ではなく、`./install.sh`（要実行権限）または `bash install.sh` で実行してください（`/bin/sh` が dash の環境では `sh install.sh` は失敗します）。`make install` 系ターゲットは内部で `bash ./install.sh` を呼ぶため、この制約を意識せずに使えます。
 
+### clone せずにインストール（一時環境向け）
+
+一時的な環境（使い捨てのコンテナなど）でリポジトリを clone せずに導入したい場合、`gh`（GitHub CLI、認証済み）があれば以下のワンライナーで導入できます。
+
+```bash
+gh api repos/TakedaTakumi/claude-review-skills/contents/bootstrap.sh -H "Accept: application/vnd.github.raw" | bash
+```
+
+`--force` などのオプションを渡す場合は `bash -s --` に続けて指定します。
+
+```bash
+gh api repos/TakedaTakumi/claude-review-skills/contents/bootstrap.sh -H "Accept: application/vnd.github.raw" | bash -s -- --force
+```
+
+内部で GitHub の tarball を取得して展開し、`install.sh --copy` を実行します。symlink ではなくコピー配置になる点に注意してください（リポジトリ更新の反映にはこのワンライナーの再実行が必要です）。
+
 ### 既定 = symlink、ただし以下では `--copy`（`make install-copy`）を推奨
 
 | ケース | 推奨 | 理由 |
