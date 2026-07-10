@@ -29,7 +29,7 @@ related_perspectives: [test-coverage, error-handling, readability, data-integrit
 
 ### review-branch での読み方
 
-差分中で変更・追加された条件式（if / switch / 三項演算子 / ガード節）を `templates/condition-analysis.md` の手順で全列挙し、境界値表・デシジョンテーブルを作成する。作成した表を PR 説明・コミットメッセージ・関連仕様が示す意図と照合する。照合できない条件は「意図不明」として報告し、推測で問題なしと判定しない。
+差分中で変更・追加された条件式（if / switch / 三項演算子 / ガード節）を [condition-analysis.md](../templates/condition-analysis.md) の手順で全列挙し、境界値表・デシジョンテーブルを作成する。作成した表を PR 説明・コミットメッセージ・関連仕様が示す意図と照合する。照合できない条件は「意図不明」として報告し、推測で問題なしと判定しない。
 
 ### review-slice での読み方
 
