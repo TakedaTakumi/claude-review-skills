@@ -97,7 +97,7 @@ PERSPECTIVES と `--categories` は **AND** で絞り込み。交差セルが空
 
 | 引数 | 既定 | 説明 |
 |---|---|---|
-| 第1引数（起点ファイル） | **必須** | 評価の起点。存在しない/ファイルでないならエラー停止 |
+| 第1引数（起点） | **必須** | `<ファイル>` または `<ファイル>::<シンボル>`。`::` が無ければファイル全体起点。存在しない/ファイルでないならエラー停止。シンボル = 関数 / クラス / `Class.method` |
 | 第2引数以降（PERSPECTIVES） | `all` | スライス適用可能な観点をカンマ区切り |
 | `--depth=<n>` | 無制限（安全上限10、0で起点のみ） | 依存追跡の最大深さ |
 | `--direction=<down\|up\|both>` | `down` | 追跡方向。down=依存先 / up=利用元 / both=双方向 |
@@ -114,10 +114,30 @@ PERSPECTIVES と `--categories` は **AND** で絞り込み。交差セルが空
 | `/review-slice src/api/order_controller.py --direction=both` | 双方向 |
 | `/review-slice src/api/order_controller.py ddd-tactical,ddd-strategic` | DDD 観点のみ |
 | `/review-slice src/api/order_controller.py security,data-integrity --depth=5` | 観点と深さを併用 |
+| `/review-slice src/app/order_service.py::OrderService` | クラス起点（span 内参照のみ依存追跡） |
+| `/review-slice src/app/order_service.py::OrderService.checkout` | メソッド起点 |
+| `/review-slice src/utils/calc.py::normalize_amount` | 関数起点 |
+
+> **シンボル起点**: 起点ファイル内を「経路上（span）」と「起点同居（span 外の同ファイルコード）」にタグ区別し、依存追跡は span 内で参照される依存だけを辿る（ファイル全体の import は辿らない）。依存先ファイルは従来どおりファイル全体。
+> 解決失敗・複数一致は Phase 0 で停止し確認、span が曖昧に確定できない／ネスト関数・ラムダ・動的生成は警告してファイル全体起点に縮退する。`--direction=up` × シンボルは同名衝突で精度が落ちる。
+
+### シンボルの書式
+
+`<ファイル>::<シンボル>` の `<シンボル>` 部分は次の3形式のみ:
+
+| 種別 | 書式 | 例 |
+|---|---|---|
+| 関数 | 関数名のみ | `calc.py::normalize_amount` |
+| クラス | クラス名のみ | `order_service.py::OrderService` |
+| クラスメソッド | `クラス名.メソッド名`（`.` は **1階層のみ**） | `order_service.py::OrderService.checkout` |
+
+- `.` で繋ぐのはメソッド指定のときだけ。`OrderService` のようにクラス名単体ならクラス全体が起点。
+- **ネストは未サポート**: ネストクラス（`Outer.Inner`）・ネスト関数・ネストメソッド（`Outer.Inner.method` の2階層以上）・ラムダ・動的生成は指定できない。検出時は警告してファイル全体起点に縮退する。
+- 言語差: トップレベル関数・クラスはその名前、インスタンス/クラスメソッドは `クラス名.メソッド名` で統一（Python の `self` 引数、TS のアクセス修飾子、Go のレシーバ表記などは書式に含めない）。同名シンボル・オーバーロードは Phase 0 で警告・確認する。
 
 ### 流れ
 
-1. **Phase 0**: 起点 → 依存追跡（`--direction`/`--depth`）→ レイヤー・コンテキスト分類 → 境界貫通検出 → 動的解決の警告。段階的実行ではここで停止しユーザー確認
+1. **Phase 0**: 起点（シンボル起点なら `::` 分割・span 解決）→ 依存追跡（`--direction`/`--depth`、シンボル起点は span 内参照に限定）→ レイヤー・コンテキスト分類 → 境界貫通検出 → 動的解決の警告。段階的実行ではここで停止しユーザー確認
 2. **Phase 1**: `slice-flow-reviewer` が入口→出口の情報フローを作成 → 各観点 Agent に並列委任（情報フローを土台にする）
 3. **Phase 2**: スライス全体のセルフレビュー
 4. **Phase 3**: スライスサマリ（構成サマリ／Critical・High／推奨アクション／観点別スコア 1〜5）

@@ -44,6 +44,28 @@ presentation → application → domain → infrastructure
 - コマンド実行: （なし）
 ```
 
+## シンボル起点（`path::symbol`）の場合
+
+起点がファイルではなくシンボル（関数 / クラス / `Class.method`）のとき、入口は「起点シンボル」になる。起点ファイル内は **経路上（span）** と **起点同居（span 外の同ファイルコード）** を区別して記述する。依存追跡は span 内で実際に参照される依存だけを辿る（ファイル全体の import は辿らない）。
+
+```
+## スライス情報フロー（シンボル起点）
+
+### 入口
+- 起点シンボル: OrderService.checkout（src/app/order_service.py::OrderService.checkout, application）
+- 受け取る情報: 注文確定リクエスト（order_id, payment_token）
+- 起点同居（span 外・参考）: 同ファイルの OrderService.cancel ほか（スライス本体＝経路上＋依存先には含めない／責務集中の判断材料）
+
+### 経路（span 内参照のみ辿る）
+| 深さ | パス | レイヤー | タグ | 処理 | 外部作用 |
+|---|---|---|---|---|---|
+| 0 | src/app/order_service.py::OrderService.checkout | application | 経路上 | 業務調整 | なし |
+| 1 | src/infra/payment_gateway.py | infrastructure | 依存先 | 決済要求 | 外部 API 送信 |
+
+### 出口（副作用の棚卸し）
+- 外部 API 送信: src/infra/payment_gateway.py:42（決済）
+```
+
 ## 攻撃経路・悪意混入の注目ポイント
 
 フロー上で以下を確認する（security / supply-chain-attack のスライス文脈）:
