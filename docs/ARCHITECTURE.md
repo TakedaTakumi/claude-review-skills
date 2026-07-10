@@ -13,7 +13,7 @@
                        │ 委任（評価モード・対象・適用観点）
                        ▼
 ┌──────────────────────────────────────────────────┐
-│ Sub Agent（観点グループ別の専門ワーカー、11個）       │
+│ Sub Agent（観点グループ別の専門ワーカー、12個）       │
 │  security-reviewer / quality-reviewer / ...      │
 │  - 独立コンテキストで実行                            │
 │  - 担当観点を Skill から読み込んで評価                │
@@ -24,9 +24,9 @@
 ┌──────────────────────────────────────────────────┐
 │ Skill: code-review-perspectives（観点ライブラリ）   │
 │  SKILL.md（カタログ + マトリクス + 索引）             │
-│  perspectives/*.md  — 32 観点（1観点 = 1ファイル）   │
+│  perspectives/*.md  — 33 観点（1観点 = 1ファイル）   │
 │  categories/*.md    — 8 分類（app/test/build/...）  │
-│  templates/*.md     — 5 テンプレ（重大度・出力・進捗・エスカレ・slice-flow） │
+│  templates/*.md     — 6 テンプレ（重大度・出力・進捗・エスカレ・slice-flow・条件分岐） │
 └──────────────────────────────────────────────────┘
 ```
 
@@ -42,7 +42,7 @@
 
 | 要素 | 理由 |
 |---|---|
-| **Skill** | 32観点 × 8分類 = 重複しがちな構造を単一情報源に。`SKILL.md` の auto-invocation で「コードレビュー」用途を自動認識 |
+| **Skill** | 33観点 × 8分類 = 重複しがちな構造を単一情報源に。`SKILL.md` の auto-invocation で「コードレビュー」用途を自動認識 |
 | **Sub Agent** | 観点グループを独立コンテキストで評価でき、メインの探索ノイズで汚さない。並列実行で速い |
 | **Slash Command** | ユーザーは `/review-branch` のような明示呼び出しを期待。薄いオーケストレータに留め、本体は Skill に置く |
 
@@ -60,7 +60,7 @@
 
 「観点ファイルの frontmatter（`primary_in_categories` / `auxiliary_in_categories`）」「分類ファイルの frontmatter（`applicable_perspectives`）」「SKILL.md のマトリクス（✅/⚠️）」の三者は**完全一致**を保つ（移行時に自動照合で確認、検収条件7）。新観点を追加する際は、これら3箇所をいずれも更新すること。
 
-## 11 Sub Agent の担当範囲
+## 12 Sub Agent の担当範囲
 
 | Agent | 担当観点 |
 |---|---|
@@ -69,6 +69,7 @@
 | `architecture-reviewer` | architecture, architecture-drift, monorepo |
 | `ddd-reviewer` | ddd-tactical, ddd-strategic |
 | `test-reviewer` | test-coverage, test-quality, test-strategy, test-pyramid |
+| `logic-reviewer` | logic-correctness |
 | `performance-reviewer` | performance, hotspot, data-integrity |
 | `ops-reviewer` | runtime-config, devenv-quality, ci-quality, iac-quality, observability |
 | `dependencies-reviewer` | dependencies |
@@ -76,7 +77,7 @@
 | `ownership-reviewer` | ownership, code-provenance |
 | `slice-flow-reviewer` | slice-cohesion ＋ 入口→出口情報フロー追跡（review-slice 専用） |
 
-合計32観点を**漏れ・重複なく**カバー（自動照合で検証済み）。
+合計33観点を**漏れ・重複なく**カバー（自動照合で検証済み）。
 
 ## 観点・分類・コマンドの観点適用
 

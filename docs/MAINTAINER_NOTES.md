@@ -7,10 +7,11 @@
 このリポジトリの中核となる更新です。追加時は **以下のすべてを同期** してください（同期点の削減は中期課題）。
 
 - [ ] `skills/code-review-perspectives/perspectives/<key>.md` を追加（frontmatter キー: `key` / `display_name` / `applicable_commands` / `applicable_categories_for_repo` / `primary_in_categories` / `auxiliary_in_categories` / `related_perspectives`）
-- [ ] 本文の節構成を既存観点に合わせる（役割（人格）→ チェック項目 → 文脈別の読み替え → 重大度の判断例 → 関連観点）
+- [ ] 本文の節構成を既存観点に合わせる（役割（人格）→ チェック項目 → 文脈別の読み替え → 関連観点。重大度の例は観点ファイルには書かず `templates/severity-criteria.md` に一元化する）
 - [ ] `skills/code-review-perspectives/SKILL.md` の観点カタログ表に行を追加
 - [ ] 該当する分類で評価する場合は `SKILL.md` の **分類 × 観点マトリクス**（`✅` / `⚠️`）にも反映
 - [ ] `docs/PERSPECTIVES.md` の観点リストにも追記
+- [ ] `skills/code-review-perspectives/templates/severity-criteria.md` の「観点別の Critical / High 例」表に行を追加
 - [ ] 担当 Sub Agent の `agents/<agent>.md` の `description` に追記（auto-invocation のヒント）
 - [ ] [CHANGELOG.md](../CHANGELOG.md) の `[Unreleased]` セクションに `### Added` で記録
 
@@ -18,8 +19,15 @@
 
 - [ ] `skills/code-review-perspectives/categories/<key>.md` を追加（`key` / `display_name` / `typical_paths` / `applicable_perspectives.primary` / `applicable_perspectives.auxiliary` を frontmatter で）
 - [ ] `SKILL.md` の分類カタログ表と **分類 × 観点マトリクス** に列を追加
-- [ ] 既存32観点それぞれの `applicable_categories_for_repo` / `primary_in_categories` / `auxiliary_in_categories` を更新
+- [ ] 既存の全観点それぞれの `applicable_categories_for_repo` / `primary_in_categories` / `auxiliary_in_categories` を更新
 - [ ] `docs/CATEGORIES.md` にも追記
+- [ ] CHANGELOG に記録
+
+## テンプレートを追加する場合
+
+- [ ] `skills/code-review-perspectives/templates/<name>.md` を追加（frontmatter キー: `name` / `type: template` / `description`）
+- [ ] `SKILL.md` のテンプレート表に行を追加
+- [ ] 参照元（観点ファイルの該当節・担当 Sub Agent の評価手順）から相互参照を追記
 - [ ] CHANGELOG に記録
 
 ## Sub Agent を追加・改修する場合

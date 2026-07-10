@@ -4,7 +4,7 @@ Claude Code 向けの多観点コードレビューツール群。3つのスラ�
 **Skill（観点ライブラリ）+ Sub Agent（専門ワーカー）+ 軽量 Slash Command（オーケストレータ）**
 の組み合わせで構成する。
 
-- **32観点 × 8分類**のマトリクスでブランチ差分／リポジトリ全体／機能スライスを評価
+- **33観点 × 8分類**のマトリクスでブランチ差分／リポジトリ全体／機能スライスを評価
 - 観点は1ファイル1観点で**単一情報源**。3コマンドが共有する Skill `code-review-perspectives` から参照
 - 観点グループごとに**Sub Agent が並列実行**、観点別に整理された出力
 
@@ -24,7 +24,7 @@ Claude Code 向けの多観点コードレビューツール群。3つのスラ�
 
 ```
 skills/code-review-perspectives/   # 観点ライブラリ（SKILL.md + perspectives/ + categories/ + templates/）
-agents/                            # 観点グループ別の Sub Agent（11個）
+agents/                            # 観点グループ別の Sub Agent（12個）
 commands/                          # 各スラッシュコマンド（薄いオーケストレータ、3個）
 docs/                              # ドキュメント（legacy/ に旧仕様を保管）
 install.sh                         # ~/.claude/ への配置スクリプト
@@ -63,7 +63,7 @@ CLAUDE_DIR=/path ./install.sh # 配置先を上書き
 
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — Skill + Sub Agent + Slash Command の設計
 - [docs/USAGE.md](docs/USAGE.md) — 3コマンドの使い方・引数・例
-- [docs/PERSPECTIVES.md](docs/PERSPECTIVES.md) — 32観点のカタログ
+- [docs/PERSPECTIVES.md](docs/PERSPECTIVES.md) — 33観点のカタログ
 - [docs/CATEGORIES.md](docs/CATEGORIES.md) — 8分類のカタログ
 - [docs/MIGRATION_NOTES.md](docs/MIGRATION_NOTES.md) — 移行時の構造組み替えと差異記録
 - [CHANGELOG.md](CHANGELOG.md) — 変更履歴（Keep a Changelog 形式）
