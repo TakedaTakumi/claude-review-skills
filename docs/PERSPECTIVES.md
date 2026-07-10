@@ -1,4 +1,4 @@
-# PERSPECTIVES — 32観点カタログ（適用コマンド・Agent グルーピング ビュー）
+# PERSPECTIVES — 33観点カタログ（適用コマンド・Agent グルーピング ビュー）
 
 > **このファイルの位置付け**: 観点カタログの **一次資料は [skills/code-review-perspectives/SKILL.md](../skills/code-review-perspectives/SKILL.md)** です。本ファイルは「観点を担当 Sub Agent ごとにグルーピングし、適用コマンド（🌿📦🔬）を絵文字でひと目把握する」用途の**二次ビュー**として保持しています。観点の追加・改名時はまず SKILL.md を更新し、その後で本ファイルを同期してください（同期チェックリストは [MAINTAINER_NOTES.md](MAINTAINER_NOTES.md) 参照）。
 
@@ -47,6 +47,12 @@
 | [test-quality](../skills/code-review-perspectives/perspectives/test-quality.md) | 🌿📦🔬 | 品質。アサーション本質・過剰モック・Flaky 要素・PBT のシード再現/生成器純粋性/shrinking |
 | [test-strategy](../skills/code-review-perspectives/perspectives/test-strategy.md) | 🌿📦 | 例示 vs PBT の使い分け。代数法則・ラウンドトリップ・トートロジー検出 |
 | [test-pyramid](../skills/code-review-perspectives/perspectives/test-pyramid.md) | 📦 | ユニット/統合/E2E の比率と配置。逆ピラミッド・実行時間分布・ラベル違反 |
+
+## 条件分岐系（logic-reviewer）
+
+| 観点 | 適用 | 概要 |
+|---|---|---|
+| [logic-correctness](../skills/code-review-perspectives/perspectives/logic-correctness.md) | 🌿🔬 | 条件分岐の境界値・ケース網羅・論理式の等価性・特殊値の正しさ |
 
 ## 性能・データ系（performance-reviewer）
 

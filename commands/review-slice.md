@@ -42,7 +42,7 @@ allowed-tools: Bash(git:*), Bash(rg:*), Read, Grep, Glob
 
 - まず `slice-flow-reviewer` に `slice-cohesion` ＋ 入口→出口の情報フロー追跡を委任（security/supply-chain の土台になる）。
 - 適用観点を担当 Agent にまとめ**並列**委任（評価モード=`slice`・スライスファイル群・レイヤー/境界情報・情報フローを渡す）:
-  - security 系 → `security-reviewer` / アーキ → `architecture-reviewer` / DDD → `ddd-reviewer` / 性能・データ → `performance-reviewer` / 品質（error-handling/maintainability/readability）→ `quality-reviewer` / 依存 → `dependencies-reviewer` / observability → `ops-reviewer` / code-provenance → `ownership-reviewer`
+  - security 系 → `security-reviewer` / アーキ → `architecture-reviewer` / DDD → `ddd-reviewer` / 条件分岐 → `logic-reviewer` / 性能・データ → `performance-reviewer` / 品質（error-handling/maintainability/readability）→ `quality-reviewer` / 依存 → `dependencies-reviewer` / observability → `ops-reviewer` / code-provenance → `ownership-reviewer`
 
 ### Phase 2 / 3
 

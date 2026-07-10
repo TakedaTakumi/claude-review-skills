@@ -30,14 +30,15 @@ allowed-tools: Bash(git:*), Bash(gh:*), Bash(rg:*), Read, Grep, Glob
 5. マージベース取得 → 差分（`--name-status` / `--stat` / 詳細 diff、大きければファイル単位）。
 6. コミット履歴 `git log --oneline <merge-base>..HEAD`。
 7. 影響範囲: 変更/追加/削除された公開シンボル（関数・クラス・エンドポイント・CLI フラグ・env・設定キー・DB スキーマ）を抽出し、`rg`/`git grep` で参照箇所を洗う（compatibility/architecture/test-coverage で参照）。
-8. 大量変更（目安 1000 行超 or 30 ファイル超、または平均 PR 比で大）ならファイル単位読みへ方針宣言。
-9. 適用観点を決定（PERSPECTIVES × applicable_commands）。
+8. 条件式抽出: 差分中で変更・追加された条件式（if / switch / 三項演算子 / ガード節）を `rg` で機械的に抽出し、一覧を用意する（logic-correctness で参照）。
+9. 大量変更（目安 1000 行超 or 30 ファイル超、または平均 PR 比で大）ならファイル単位読みへ方針宣言。
+10. 適用観点を決定（PERSPECTIVES × applicable_commands）。
 
 ### Phase 1: Sub Agent への委任（並列）
 
 決定した観点を担当 Agent ごとにまとめ、**並列に**委任する（各 Agent に 評価モード=`branch`・差分情報・適用観点を渡す）:
 
-- security 系 → `security-reviewer` / 品質系 → `quality-reviewer` / アーキ → `architecture-reviewer` / DDD → `ddd-reviewer` / テスト → `test-reviewer` / 性能・データ → `performance-reviewer` / ops（runtime-config/devenv-quality/ci-quality/observability）→ `ops-reviewer` / 依存 → `dependencies-reviewer` / メタ（documentation/i18n-a11y）→ `meta-reviewer` / 由来（code-provenance）→ `ownership-reviewer`
+- security 系 → `security-reviewer` / 品質系 → `quality-reviewer` / アーキ → `architecture-reviewer` / DDD → `ddd-reviewer` / テスト → `test-reviewer` / 条件分岐 → `logic-reviewer` / 性能・データ → `performance-reviewer` / ops（runtime-config/devenv-quality/ci-quality/observability）→ `ops-reviewer` / 依存 → `dependencies-reviewer` / メタ（documentation/i18n-a11y）→ `meta-reviewer` / 由来（code-provenance）→ `ownership-reviewer`
 
 ### Phase 2: 集約とセルフレビュー
 
