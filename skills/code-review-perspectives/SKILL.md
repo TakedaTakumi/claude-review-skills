@@ -1,12 +1,12 @@
 ---
 name: code-review-perspectives
-description: コードレビューの観点ライブラリ（32観点・8分類）。/review-branch, /review-repo, /review-slice の3コマンドと11個の Sub Agent から参照される。観点ごとに人格・チェック項目・文脈別の読み替え・必須出力指標・重大度判断基準を持つ。ブランチ差分レビュー、リポジトリ全体の健康診断、機能スライスのレビューを行うときに参照する。
+description: コードレビューの観点ライブラリ（33観点・8分類）。/review-branch, /review-repo, /review-slice の3コマンドと12個の Sub Agent から参照される。観点ごとに人格・チェック項目・文脈別の読み替え・必須出力指標・重大度判断基準を持つ。ブランチ差分レビュー、リポジトリ全体の健康診断、機能スライスのレビューを行うときに参照する。
 ---
 
 # Code Review Perspectives
 
-コードレビューで用いる **32観点・8分類・各種テンプレート** をまとめた観点ライブラリ。
-3つのスラッシュコマンド（`review-branch` / `review-repo` / `review-slice`）および 11 個の Sub Agent から参照される。
+コードレビューで用いる **33観点・8分類・各種テンプレート** をまとめた観点ライブラリ。
+3つのスラッシュコマンド（`review-branch` / `review-repo` / `review-slice`）および 12 個の Sub Agent から参照される。
 
 - **段階的開示**: このカタログ（SKILL.md）と、評価に必要な観点ファイルのみを読み込む。全観点を一度にロードしない。
 - **単一情報源**: 1観点 = 1ファイル。3コマンドはこのライブラリを共有参照する。本 SKILL.md が観点・分類カタログの **一次資料**。
@@ -14,7 +14,7 @@ description: コードレビューの観点ライブラリ（32観点・8分類�
 
 > 注: 各観点ファイル・分類ファイル・テンプレートは段階的に追加される。本 SKILL.md はカタログとして全体の索引を提供する。
 
-## 観点カタログ（32観点）
+## 観点カタログ（33観点）
 
 各観点の `applicable_commands`（どのコマンドで評価するか）は、各 `perspectives/{key}.md` の frontmatter で定義する（legacy 実体から導出）。
 
@@ -38,6 +38,7 @@ description: コードレビューの観点ライブラリ（32観点・8分類�
 | `test-quality` | テスト品質 | [perspectives/test-quality.md](perspectives/test-quality.md) | test-reviewer |
 | `test-strategy` | テスト戦略（例示ベース vs PBT） | [perspectives/test-strategy.md](perspectives/test-strategy.md) | test-reviewer |
 | `test-pyramid` | テストピラミッドのバランス | [perspectives/test-pyramid.md](perspectives/test-pyramid.md) | test-reviewer |
+| `logic-correctness` | 条件分岐・ロジック正しさ | [perspectives/logic-correctness.md](perspectives/logic-correctness.md) | logic-reviewer |
 | `dependencies` | 依存関係/ライブラリ | [perspectives/dependencies.md](perspectives/dependencies.md) | dependencies-reviewer |
 | `data-integrity` | データ整合性・トランザクション・冪等性 | [perspectives/data-integrity.md](perspectives/data-integrity.md) | performance-reviewer |
 | `error-handling` | エラーハンドリング/例外処理 | [perspectives/error-handling.md](perspectives/error-handling.md) | quality-reviewer |
