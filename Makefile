@@ -1,10 +1,9 @@
 # コメント規約: `target: ## 説明` と書くと make help の一覧に表示される。
 # `## 見出し ##` はセクション見出しとして表示される。
-# 説明中に `※` で始まる補足を書くと、一覧表示時に次行へ折り返される。
 .DEFAULT_GOAL := help
 .PHONY: help
 help:
-	@awk -f ./tools/help.awk $(MAKEFILE_LIST) | $${PAGER:-less -R}
+	@awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2} /^## .* ##$$/ {if (n++) print ""; print; next}' $(MAKEFILE_LIST)
 
 .PHONY: install install-copy install-force install-copy-force
 
