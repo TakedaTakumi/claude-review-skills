@@ -13,6 +13,7 @@
 - `docs/MAINTAINER_NOTES.md` — 観点・分類・Agent 追加時の同期チェックリスト（メンテナー向け）
 - `docs/legacy/README.md` — 旧 spec の凍結方針と「真実の源は現リポジトリ」を明示
 - `.github/workflows/check.yml` — GitHub Actions CI（3 ジョブ）: Unicode 不可視文字・双方向制御文字スキャン、`install.sh` の shellcheck、gitleaks シークレットスキャン。トリガーは `main` / `develop` への push、pull_request、手動実行（workflow_dispatch）。`permissions: contents: read` で最小権限、third-party action は commit SHA pin（ci-quality 観点準拠）
+- `logic-correctness` 観点を追加（条件分岐の境界値・ケース網羅・論理式の等価性・特殊値）。専任 Sub Agent `agents/logic-reviewer.md` を新設し、`commands/review-branch.md`（Phase 0 条件式抽出 + 委任先）/ `commands/review-slice.md`（委任先）に組み込み。列挙手順テンプレート `templates/condition-analysis.md` を追加
 
 ### Changed
 
@@ -30,6 +31,7 @@
 
 ### Fixed
 
+- `docs/MAINTAINER_NOTES.md`: 観点追加チェックリストの節構成記述が実態（重大度は `templates/severity-criteria.md` に一元化）と乖離していたのを修正、テンプレート追加チェックリストを新設
 - `install.sh`: `CLAUDE_DIR` が空文字列・ルート (`/`)・末尾スラッシュ付きパスでも安全に動作するよう入力検証を追加（特に `CLAUDE_DIR="/"` で `rm -rf` が予期せぬパスを対象にしうる経路を遮断）
 - `install.sh`: `CLAUDE_DIR` が `-` で始まるパス（例: `-tmp/claude`）を弾くガードを追加。`rm -rf` / `ln -sfn` / `cp -R` のオペランドの前に `--` を付与し dash-leading パスをオプションと誤解しないように防御（Copilot review #2 で指摘）
 - `install.sh`: `readlink` から `--` を削除し BSD/macOS の readlink でも動作するよう移植性を改善（Copilot review #1 で指摘）
