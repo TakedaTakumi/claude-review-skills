@@ -125,3 +125,4 @@ description: コードレビューの観点ライブラリ（33観点・8分類�
 | [templates/output-format.md](templates/output-format.md) | 観点別（および分類 × 観点）の出力フォーマット |
 | [templates/progress-log.md](templates/progress-log.md) | 進捗表示ルール（🔍 / ✅ / ⚠️ / ❌ の絵文字 + 1行進捗） |
 | [templates/slice-flow-template.md](templates/slice-flow-template.md) | review-slice の「入口 → 出口」情報フロー記述テンプレート |
+| [templates/condition-analysis.md](templates/condition-analysis.md) | 条件分岐の列挙・境界値分析・意図照合の定型手順（logic-correctness で使用） |
