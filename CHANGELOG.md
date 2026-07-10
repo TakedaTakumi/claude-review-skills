@@ -7,6 +7,8 @@
 
 ### Added
 
+- `Makefile` — `make install` / `make install-copy` / `make install-force` / `make install-copy-force`（内部で `bash ./install.sh` を対応フラグ付きで呼ぶ薄いラッパー）と `make help`（awk ワンライナーによるターゲット一覧表示、既定ゴール）を追加。README にも `make` 経由の手順を正式な手順として記載
+- `bootstrap.sh` — git clone せずに導入するためのブートストラップスクリプト。`gh` CLI で tarball を取得・展開し `install.sh --copy` を実行（追加引数は透過、`CLAUDE_DIR` 対応）。README にワンライナー手順（`gh api .../contents/bootstrap.sh ... | bash`）を記載
 - `/review-slice` のシンボル起点（`<ファイル>::<シンボル>`）— 関数 / クラス / `Class.method` を起点に指定可能（issue #4）。起点ファイル内を「経路上（span）/ 起点同居（span 外）」にタグ区別し、依存追跡を span 内参照に限定するハイブリッドスライス。`::` 無しは従来どおりファイル全体起点で後方互換。解決失敗は Phase 0 停止＋確認、span 曖昧／ネスト・ラムダ・動的生成はファイル全体起点に縮退して警告。`commands/review-slice.md` / `agents/slice-flow-reviewer.md` / `slice-flow-template.md` / `slice-cohesion.md` / `output-format.md` / `docs/USAGE.md` を更新
 - `SECURITY.md` — 脆弱性報告チャネル（GitHub Security Advisories）を明示
 - `CHANGELOG.md` — 本ファイル

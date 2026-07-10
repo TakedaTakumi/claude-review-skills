@@ -39,6 +39,20 @@ install.sh                         # ~/.claude/ への配置スクリプト
 - **Claude Code**: Skill / Sub Agent / Slash Command 機構をサポートするバージョン（動作確認: **2.1.150**）。`claude --version` で確認できます。
 - **bash**: 4 以上（`set -euo pipefail`・`BASH_SOURCE` を使用するため dash / posh では実行不可）。
 
+### make 経由（推奨）
+
+```bash
+make                     # ターゲット一覧（help）を表示
+make install             # ~/.claude/ に symlink で配置（リポジトリ更新が即反映）
+make install-copy        # コピーで配置
+make install-force       # 本ツール由来でない同名エントリも確認なしで上書き
+make install-copy-force  # コピーで配置かつ本ツール由来でない同名エントリも確認なしで上書き
+```
+
+各 `install` 系ターゲットは、内部で `bash ./install.sh` を対応するフラグ付きで呼び出す薄いラッパーです。
+
+### make を使わない場合（`./install.sh` 直接実行）
+
 ```bash
 ./install.sh                  # ~/.claude/ に symlink で配置（リポジトリ更新が即反映）
 ./install.sh --copy           # コピーで配置
@@ -46,18 +60,34 @@ install.sh                         # ~/.claude/ への配置スクリプト
 CLAUDE_DIR=/path ./install.sh # 配置先を上書き
 ```
 
-実行には bash が必要です。`sh install.sh` ではなく、`./install.sh`（要実行権限）または `bash install.sh` で実行してください（`/bin/sh` が dash の環境では `sh install.sh` は失敗します）。
+実行には bash が必要です。`sh install.sh` ではなく、`./install.sh`（要実行権限）または `bash install.sh` で実行してください（`/bin/sh` が dash の環境では `sh install.sh` は失敗します）。`make install` 系ターゲットは内部で `bash ./install.sh` を呼ぶため、この制約を意識せずに使えます。
 
-### 既定 = symlink、ただし以下では `--copy` を推奨
+### clone せずにインストール（一時環境向け）
+
+一時的な環境（使い捨てのコンテナなど）でリポジトリを clone せずに導入したい場合、`gh`（GitHub CLI、認証済み）があれば以下のワンライナーで導入できます。
+
+```bash
+gh api repos/TakedaTakumi/claude-review-skills/contents/bootstrap.sh -H "Accept: application/vnd.github.raw" | bash
+```
+
+`--force` などのオプションを渡す場合は `bash -s --` に続けて指定します。
+
+```bash
+gh api repos/TakedaTakumi/claude-review-skills/contents/bootstrap.sh -H "Accept: application/vnd.github.raw" | bash -s -- --force
+```
+
+内部で GitHub の tarball を取得して展開し、`install.sh --copy` を実行します。symlink ではなくコピー配置になる点に注意してください（リポジトリ更新の反映にはこのワンライナーの再実行が必要です）。
+
+### 既定 = symlink、ただし以下では `--copy`（`make install-copy`）を推奨
 
 | ケース | 推奨 | 理由 |
 |---|---|---|
-| ローカル開発（観点をその場で編集して反映したい） | `./install.sh`（symlink） | リポジトリ更新が即反映 |
-| **VSCode 拡張版 Claude Code** | `./install.sh --copy` | 拡張版がスラッシュコマンドを discovery する際、symlink を辿らずコマンド一覧に出ないことがある |
-| `~/.claude` を別 Docker コンテナにバインドする運用 | `./install.sh --copy` | symlink のターゲットパスはコンテナ内に存在しないため壊れる |
+| ローカル開発（観点をその場で編集して反映したい） | `make install` / `./install.sh`（symlink） | リポジトリ更新が即反映 |
+| **VSCode 拡張版 Claude Code** | `make install-copy` / `./install.sh --copy` | 拡張版がスラッシュコマンドを discovery する際、symlink を辿らずコマンド一覧に出ないことがある |
+| `~/.claude` を別 Docker コンテナにバインドする運用 | `make install-copy` / `./install.sh --copy` | symlink のターゲットパスはコンテナ内に存在しないため壊れる |
 | `~/.claude` を **`code-review-perspectives` 以外**の用途にも使っている | （安全策の症状なし時はそのまま） | install.sh は自前の名前（`code-review-perspectives` / `*-reviewer.md` / `review-{branch,repo,slice}.md`）以外には触れない。同名衝突がある場合はガードが効いて確認を求める |
 
-`--copy` で配置した場合、観点・Agent・コマンドを編集した後は `./install.sh --copy` の再実行が必要です（symlink では不要）。
+`--copy`（`make install-copy`）で配置した場合、観点・Agent・コマンドを編集した後は `make install-copy`（または `./install.sh --copy`）の再実行が必要です（symlink では不要）。`CLAUDE_DIR` で配置先を変えたい場合は `CLAUDE_DIR=/path make install-copy` のように環境変数で指定できます（`./install.sh` 直接実行でも同様）。
 
 ## ドキュメント
 
