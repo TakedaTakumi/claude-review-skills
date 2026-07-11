@@ -1,5 +1,10 @@
 # claude-review-skills
 
+> [!IMPORTANT]
+> このリポジトリは [claude-tools](https://github.com/TakedaTakumi/claude-tools) に統合されました。
+> 今後の更新は claude-tools 側で行います。本リポジトリの内容は統合時点のまま凍結します。
+> なお、移行経緯資料（docs/legacy/・MIGRATION_PLAN.md・docs/MIGRATION_NOTES.md）は claude-tools には移管していないため、本リポジトリで参照してください。
+
 Claude Code 向けの多観点コードレビューツール群。3つのスラッシュコマンドを
 **Skill（観点ライブラリ）+ Sub Agent（専門ワーカー）+ 軽量 Slash Command（オーケストレータ）**
 の組み合わせで構成する。
